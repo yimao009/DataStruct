@@ -47,7 +47,7 @@ static const NSUInteger ELEMENT_NOT_FOUND = NSNotFound;
     [self rangeOfIndexForAdd:index];
     
     [self ensureCapaticy: self.size + 1];
-    
+    // i = size -1; i >= index
     for (NSUInteger i = self.size; i > index; i--) {
         self.list[i] = self.list[i-1];
     }
@@ -58,8 +58,10 @@ static const NSUInteger ELEMENT_NOT_FOUND = NSNotFound;
 - (id)removeIndex:(NSUInteger)index {
     [self rangeOfIndex:index];
     id oldElement = self.list[index];
-    
+    // index + 1; i<=size-1
+    // index + 1; i<size
     for (NSUInteger i = index; i < self.size-1; i++) {
+        // [i-1] = i
         self.list[i] = self.list[i+1];
     }
     /// TODO:
@@ -78,13 +80,12 @@ static const NSUInteger ELEMENT_NOT_FOUND = NSNotFound;
 }
 
 - (NSUInteger)indexOfElement:(id)element {
-    NSUInteger result = ELEMENT_NOT_FOUND;
     for (NSUInteger i = 0; i < self.size; i++) {
-        if (self.list[i] == element) {
-            result = i;
+        if ([self.list[i] isEqual:element]) {
+            return i;
         }
     }
-    return result;
+    return ELEMENT_NOT_FOUND;
 }
 
 - (id)lastElement {
@@ -110,7 +111,6 @@ static const NSUInteger ELEMENT_NOT_FOUND = NSNotFound;
         self.list[i] = [NSNull null];
     }
     self.size = 0;
-
 }
 
 - (void)rangeOfIndex:(NSUInteger)index {

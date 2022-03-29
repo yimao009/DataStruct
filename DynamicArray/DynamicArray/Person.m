@@ -26,4 +26,22 @@
     NSLog(@"Person dealloc");
 }
 
+- (BOOL)isEqual:(id)other
+{
+    if (other == nil) {
+        return NO;
+    }
+
+    if (![other isKindOfClass:[self class]]) {
+        return NO;
+    }
+    Person *p = (Person *)other;
+    return self.age == p.age;
+}
+
+//- (NSUInteger)hash
+//{
+//    return <#hash expression#>;
+//}
+
 @end

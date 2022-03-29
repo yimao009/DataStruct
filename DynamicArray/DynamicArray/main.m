@@ -51,12 +51,18 @@ int main(int argc, const char * argv[]) {
 
 //        NSLog(@"%@", list);
         ;
-//        DynamicArray<Person *> *arrays = [[DynamicArray alloc] init];
-//        [arrays add: [[Person alloc] initWithName:@"Jack" age:10] ];
-//        [arrays add: [[Person alloc] initWithName:@"James" age:12] ];
-//        [arrays add: [[Person alloc] initWithName:@"Rose" age:10] ];
+        DynamicArray<NSObject *> *arrays = [[DynamicArray alloc] init];
+        [arrays add: [[Person alloc] initWithName:@"Jack" age:10] ];
+        [arrays add:[NSNull null]];
+        [arrays add: [[Person alloc] initWithName:@"James" age:12] ];
+        [arrays add:[NSNull null]];
+        [arrays add: [[Person alloc] initWithName:@"Rose" age:10] ];
 //        [arrays clear];
-//        NSLog(@"%@", arrays);
+
+        NSLog(@"%@", @([arrays indexOfElement:[NSNull null]]));;
+        NSLog(@"%@", @([arrays indexOfElement:[[Person alloc] initWithName:@"James" age:12]]));;
+
+        NSLog(@"%@", arrays);
         
     }
     return 0;
